@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Pokemon Team Builder</title>  
+        <link rel="stylesheet" href="Pokemon_CSS.css">
+    </head>
+    <body>
+        <main>
+            <h3>Name or ID</h3>
+            <input type="text" id="pokemonInput" name="pokemonInput">
+            <button onclick="findPokemonInfo()" id="findButton">Find</button>
+
+            <img id="pokemonImage" src="https://img.freepik.com/free-vector/camouflage-pattern-texture-pixel-gray-shades-background_1017-30109.jpg?semt=ais_rp_progressive&w=740&q=80" alt="Pokemon Image">
+            <audio id="pokemonAudio" controls style="display:none;">
+                <source id="pokemonAudioSource" src="" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <form id="pokemonMoves" style="align-items: center;"> 
+                <select name="move1" id="movesSelect">
+                    <option value="">Select a move</option>
+            </form>
+
+            <button id="addTeamButton">Add to Team</button>
+        </main>
+
+        <container id="teamDisplay" function="displayTeam()">
+            <div id="teamMember1">
+                <img id="teamImage1" src="" alt="Team Pokemon 1" style="display:none;">
+                <!-- list all moves selected here -->
+            </div>
+            <div id="teamMember2">
+                <img id="teamImage2" src="" alt="Team Pokemon 2" style="display:none;">
+
+            </div>
+            <div id="teamMember3">
+                <img id="teamImage3" src="" alt="Team Pokemon 3" style="display:none;">
+
+            </div>
+            <div id="teamMember4">
+
+                <img id="teamImage4" src="" alt="Team Pokemon 4" style="display:none;">
+            </div>
+        </container>
+    </body>
+    <script src="Pokemon_JS.js"></script>
+</html>
