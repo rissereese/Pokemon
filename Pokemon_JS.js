@@ -4,7 +4,6 @@ let pokemon = null;
 
 const imgArr = ["teamImage1", "teamImage2", "teamImage3", "teamImage4"];
 const selectList = ["PM1", "PM2", "PM3", "PM4"];
-const selectedMoves = ["select1", "select2", "select3", "select4"];         // id
 const lists = ["list1", "list2", "list3", "list4"];
 
 async function loadPokemonInfo(pokemonAPIurl) {
@@ -42,7 +41,6 @@ function allPokemonMoves(pokemon) {
         
         pokemon.moves.forEach(i => {
             const option = document.createElement("option");
-            console.log("Move: " + i);
             option.textContent = i.move.name;
             select.appendChild(option);
         });
@@ -64,7 +62,7 @@ function findEmptyTeamSlot() {
 function getPokemonMoves() {
     let movesList = [];
     for (let i = 0; i < 4; i++) {
-        const move = document.getElementById(selectedMoves[i]);
+        const move = document.getElementById(selectList[i]).value;
         movesList.push(move);
     }
     return movesList;
