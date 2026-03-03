@@ -3,6 +3,10 @@ function displayPokemon(currPokemon) {
     document.getElementById("pokemonImage").src = currPokemon.sprites.front_default;
 }
 
+function pokemonSound(currPokemon) {
+    document.getElementById("pokemonAudio").src = currPokemon.cries.latest;
+}
+
 async function findPokemonInfo() {
     // let currPokemon = null;
     let pokemon = document.getElementById("pokemonInput").value.trim().toLowerCase();
@@ -20,6 +24,7 @@ async function findPokemonInfo() {
         })
         .then(data => {
             displayPokemon(data);
+            pokemonSound(data);
             // console.log(currPokemon);
         })
         .catch(error => {

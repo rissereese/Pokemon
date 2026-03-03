@@ -4,9 +4,32 @@ body {
 
 main {
     text-align: center;
+    align-items: center;
 }
 
 img {
-    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    align-items: center; 
     display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
+}
+
+audio {
+    display: block;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+#pokemonMoves1 {
+    display: block;
+    
 }
