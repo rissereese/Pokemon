@@ -7,7 +7,7 @@ main {
     align-items: center;
 }
 
-main > img {
+#pokemonImage {
     background-color: white;
     border: 1px solid black;
     text-align: center;
@@ -45,15 +45,25 @@ select {
 }
 
 #teamCol {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     margin: auto;
+    border: 1px solid black;
+}
+
+#teamRow {
+    display: none;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    margin: auto;
+    border: 1px solid black;
 }
 
 .teamRow > ul {
-    display: flex;
     margin: 0;
     padding-left: 20px;
     display: block;

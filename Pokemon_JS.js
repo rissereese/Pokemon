@@ -5,6 +5,7 @@ let pokemon = null;
 const imgArr = ["teamImage1", "teamImage2", "teamImage3", "teamImage4"];
 const selectList = ["PM1", "PM2", "PM3", "PM4"];
 const lists = ["list1", "list2", "list3", "list4"];
+const rows = ["row1", "row2", "row3", "row4"];
 
 async function loadPokemonInfo(pokemonAPIurl) {
     let response = await fetch(pokemonAPIurl);
@@ -81,6 +82,8 @@ function getSelectedPokemonMoves() {
 
 async function addToTeam() {
     let j = 0;
+    document.getElementById("teamCol").style.display = "flex";
+
     j = findEmptyTeamSlot();
     if (j === -1) {
         window.alert("Team is full. Max. number is four members.");
@@ -88,7 +91,7 @@ async function addToTeam() {
     }
 
     const img = document.getElementById(imgArr[j]);
-    img.style.display = "block";
+    img.style.display = "inline-block";
     img.src = pokemon.sprites.front_default;
 
     const ul = document.getElementById(lists[j]);
@@ -100,5 +103,5 @@ async function addToTeam() {
         li.textContent = move;
         ul.appendChild(li);
     });
-    ul.style.display = "block";
+    ul.style.display = "inline-block";
 }
