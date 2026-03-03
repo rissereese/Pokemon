@@ -1,37 +1,39 @@
+let pokemon = null;
+const imgArr = ["teamImage1", "teamImage2", "teamImage3", "teamImage4"];
 
-function displayPokemon(currPokemon) {
-    document.getElementById("pokemonImage").src = currPokemon.sprites.front_default;
-}
-
-function pokemonSound(currPokemon) {
-    document.getElementById("pokemonAudio").src = currPokemon.cries.latest;
+async function loadPokemonInfo(input, pokemonAPIurl) {
+    let response = await fetch(pokemonAPIurl);
+    let data = await response.json();
+    pokemon = data;
 }
 
 async function findPokemonInfo() {
-    // let currPokemon = null;
-    let pokemon = document.getElementById("pokemonInput").value.trim().toLowerCase();
-    console.log(pokemon);
+    let input = document.getElementById("pokemonInput").value.trim().toLowerCase();
+    const pokemonAPIurl = 'https://pokeapi.co/api/v2/pokemon/' + input;
+    await loadPokemonInfo(input, pokemonAPIurl);
+    displayPokemon(pokemon);
+    pokemonSound(pokemon);
+    pokemonMoves(pokemon);
+}
 
-    const pokemonAPIurl = 'https://pokeapi.co/api/v2/pokemon/' + pokemon;
-    console.log(pokemonAPIurl);
+function displayPokemon(pokemon) {
+    document.getElementById("pokemonImage").src = pokemon.sprites.front_default;
+}
 
-    fetch(pokemonAPIurl)
-        .then(response =>{
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayPokemon(data);
-            pokemonSound(data);
-            // console.log(currPokemon);
-        })
-        .catch(error => {
-            console.error('Error ', error);
-        });
+function pokemonSound(pokemon) {
+    document.getElementById("pokemonAudio").src = pokemon.cries.latest;
+}
+
+function pokemonMoves(pokemon) {
     
-    // let form = 'https://pokeapi.co/api/v2/pokemon-form/' + pokemon;
-    // console.log("currPokemon: " + currPokemon);
-    // displayPokemon(currPokemon);
+}
+
+function addToTeam(x) {
+    let i = 0;
+    let img = document.getElementById(imgArr[0]);
+    while (img.src == null || i > 4) {
+        i++;
+        img = document.getElementById(imgArr[i]);
+    }
+    img = displayPokemon(x);
 }

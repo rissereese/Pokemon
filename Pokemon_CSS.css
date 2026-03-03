@@ -13,8 +13,8 @@ img {
     text-align: center;
     align-items: center; 
     display: block;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     height: 200px;
@@ -26,10 +26,37 @@ audio {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-#pokemonMoves1 {
-    display: block;
-    
+#pokemonMoves {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
 }
+
+/* #teamDisplay {
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+} */
+
+#teamDisplay > ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+#teamDisplay > img {
+    height: 75px;
+    width: 75px;
+    display: block;
+    background-color: lightskyblue;
+}
+
+
