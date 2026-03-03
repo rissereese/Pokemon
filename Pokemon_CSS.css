@@ -59,5 +59,11 @@ audio {
     background-color: lightskyblue;
 }
 
+select {
+    height: 20px;
+    width: 150px;
+    gap: 10px;
+}
+
 
 

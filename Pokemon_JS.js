@@ -1,11 +1,13 @@
 let input = null;
 let pokemonAPIurl = null;
 let pokemon = null;
+
 const imgArr = ["teamImage1", "teamImage2", "teamImage3", "teamImage4"];
-const selectedMoves = ["select1", "select2", "select3", "select4"];
+const selectList = ["PM1", "PM2", "PM3", "PM4"];
+const selectedMoves = ["select1", "select2", "select3", "select4"];         // id
 const lists = ["list1", "list2", "list3", "list4"];
 
-async function loadPokemonInfo(input, pokemonAPIurl) {
+async function loadPokemonInfo(pokemonAPIurl) {
     let response = await fetch(pokemonAPIurl);
     if (!response.ok) {
         console.log("HTTP Error:", response.status);
@@ -18,10 +20,10 @@ async function loadPokemonInfo(input, pokemonAPIurl) {
 async function findPokemonInfo(input) {
     input = document.getElementById("pokemonInput").value.trim().toLowerCase();
     pokemonAPIurl = 'https://pokeapi.co/api/v2/pokemon/' + input;
-    pokemon = await loadPokemonInfo(input, pokemonAPIurl);
+    pokemon = await loadPokemonInfo(pokemonAPIurl);
     displayPokemon(pokemon);
     pokemonSound(pokemon);
-    pokemonMovesOptionList(pokemon);
+    allPokemonMoves(pokemon);
 }
 
 
@@ -33,8 +35,19 @@ function pokemonSound(pokemon) {
     document.getElementById("pokemonAudio").src = pokemon.cries.latest;
 }
 
-function pokemonMovesOptionList(pokemon) {
-
+function allPokemonMoves(pokemon) {
+    let select = null;
+    for (let i = 0; i < 4; i++) {
+        select = document.getElementById(selectList[i]);
+        
+        pokemon.moves.forEach(i => {
+            const option = document.createElement("option");
+            console.log("Move: " + i);
+            option.textContent = i.move.name;
+            select.appendChild(option);
+        });
+    }
+   
 }
 
 function findEmptyTeamSlot() {
@@ -49,18 +62,16 @@ function findEmptyTeamSlot() {
 }
 
 function getPokemonMoves() {
-    let moves = [];
+    let movesList = [];
     for (let i = 0; i < 4; i++) {
-        const move = document.getElementById(selectedMoves[i]).value;
-        moves.push(move);
+        const move = document.getElementById(selectedMoves[i]);
+        movesList.push(move);
     }
-    return moves;
+    return movesList;
 }
 
 async function addToTeam() {
     let j = 0;
-
-    console.log("Pokemon: ", pokemon);
     j = findEmptyTeamSlot();
     if (j === -1) {
         console.log("Team is full.");
@@ -73,8 +84,8 @@ async function addToTeam() {
     const ul = document.getElementById(lists[j]);
     ul.innerHTML = "";
 
-    const moves = getPokemonMoves();
-    moves.forEach(move => {
+    const movesList = getPokemonMoves();
+    movesList.forEach(move => {
         const li = document.createElement("li");
         li.textContent = move;
         ul.appendChild(li);
