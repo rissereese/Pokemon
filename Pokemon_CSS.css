@@ -38,6 +38,12 @@ audio {
     margin-bottom: 10px;
 }
 
+select {
+    height: 20px;
+    width: 150px;
+    gap: 10px;
+}
+
 #teamCol {
     display: flex;
     flex-direction: column;
@@ -47,6 +53,7 @@ audio {
 }
 
 .teamRow > ul {
+    display: flex;
     margin: 0;
     padding-left: 20px;
     display: block;
@@ -57,12 +64,6 @@ audio {
     width: 75px;
     display: none;
     background-color: lightskyblue;
-}
-
-select {
-    height: 20px;
-    width: 150px;
-    gap: 10px;
 }
 
 

@@ -18,13 +18,17 @@ async function loadPokemonInfo(pokemonAPIurl) {
 
 async function findPokemonInfo(input) {
     input = document.getElementById("pokemonInput").value.trim().toLowerCase();
+    if (input === "" || input < 1 || input > 151) {
+        window.alert("Please enter a valid input. Either enter the name or an integer [1 to 151]");
+        return;
+    }
+    if (input)
     pokemonAPIurl = 'https://pokeapi.co/api/v2/pokemon/' + input;
     pokemon = await loadPokemonInfo(pokemonAPIurl);
     displayPokemon(pokemon);
     pokemonSound(pokemon);
-    allPokemonMoves(pokemon);
+    listAllPokemonMoves(pokemon);
 }
-
 
 function displayPokemon(pokemon) {
     document.getElementById("pokemonImage").src = pokemon.sprites.front_default;
@@ -34,14 +38,21 @@ function pokemonSound(pokemon) {
     document.getElementById("pokemonAudio").src = pokemon.cries.latest;
 }
 
-function allPokemonMoves(pokemon) {
+function listAllPokemonMoves(pokemon) {
     let select = null;
     for (let i = 0; i < 4; i++) {
         select = document.getElementById(selectList[i]);
+        select.innerHTML = "";
+
+        const defaultOption = document.createElement("option");
+        defaultOption.textContent = "Select a move";
+        defaultOption.value = "";
+        select.appendChild(defaultOption);
         
-        pokemon.moves.forEach(i => {
+        pokemon.moves.forEach(movObj => {
             const option = document.createElement("option");
-            option.textContent = i.move.name;
+            option.textContent = movObj.move.name;
+            option.value = movObj.move.name;
             select.appendChild(option);
         });
     }
@@ -59,7 +70,7 @@ function findEmptyTeamSlot() {
     return -1;
 }
 
-function getPokemonMoves() {
+function getSelectedPokemonMoves() {
     let movesList = [];
     for (let i = 0; i < 4; i++) {
         const move = document.getElementById(selectList[i]).value;
@@ -72,6 +83,7 @@ async function addToTeam() {
     let j = 0;
     j = findEmptyTeamSlot();
     if (j === -1) {
+        window.alert("Team is full. Max. number is four members.");
         console.log("Team is full.");
     }
 
@@ -82,7 +94,7 @@ async function addToTeam() {
     const ul = document.getElementById(lists[j]);
     ul.innerHTML = "";
 
-    const movesList = getPokemonMoves();
+    const movesList = getSelectedPokemonMoves();
     movesList.forEach(move => {
         const li = document.createElement("li");
         li.textContent = move;
